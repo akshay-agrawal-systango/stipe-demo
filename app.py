@@ -106,6 +106,7 @@ def webhook_received():
 def add_card():
 
     created_card = None
+    errors = None
 
     if request.method == "POST":
 
@@ -140,15 +141,18 @@ def add_card():
         print('--------------------------------------------------')
 
 
-        created_card = stripe.Customer.create_source(
-              customer_id,
-              source=token_id,
-            )
-        print(created_card)
-        card_id = created_card.get('id')
-        print('-------------------------------------------------')
+        try:
+            created_card = stripe.Customer.create_source(
+                  customer_id,
+                  source=token_id,
+                )
+            print(created_card)
+            card_id = created_card.get('id')
+            print('-------------------------------------------------')
+        except Exception as e:
+            errors = [e]
 
-    return render_template('add_card.html', created_card=created_card)
+    return render_template('add_card.html', created_card=created_card, errors=errors)
 
 
 
