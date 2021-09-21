@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Add a Card</title>
+    <meta name="description" content="demo" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/global.css" />
+  </head>
+
+  <body>
+    <div class="sr-root">
+      <div class="sr-main">
+        <div class="sr-payment-form card">
+          {% if created_card %}
+            {{created_card}}
+          {% else %}
+            <form method="POST">
+            <input type="text" name="email" placeholder="email" required="true">
+            <input type="text" name="number" placeholder="number" required="true">
+            <input type="text" name="exp_month" placeholder="exp_month" required="true">
+            <input type="text" name="exp_year" placeholder="exp_year" required="true">
+            <input type="text" name="cvc" placeholder="cvc" required="true">
+            <input type="text" name="address_line1" placeholder="address_line1" required="true">
+            <input type="text" name="address_line2" placeholder="address_line2" required="true">
+            <input type="text" name="address_city" placeholder="address_city" required="true">
+            <input type="text" name="address_state" placeholder="address_state" required="true">
+            <input type="text" name="address_zip" placeholder="address_zip" required="true">
+            <input type="text" name="address_country" placeholder="address_country" required="true">
+            <button>Submit</button>
+          </form>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

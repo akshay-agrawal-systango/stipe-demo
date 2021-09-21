@@ -102,5 +102,56 @@ def webhook_received():
     return jsonify({'status': 'success'})
 
 
+@app.route('/add-card', methods=['GET', 'POST'])
+def add_card():
+
+    created_card = None
+
+    if request.method == "POST":
+
+        card_data = request.form.to_dict()
+        print(card_data)
+
+        customer = stripe.Customer.create(
+            email=card_data.get('email'),
+            description="some description",
+        )
+        print(customer)
+        customer_id = customer.get('id')
+        print('---------------------------------------------')
+
+
+        card_token = stripe.Token.create(
+              card={
+                "number": card_data.get('number'),
+                "exp_month": card_data.get('exp_month'),
+                "exp_year": card_data.get('exp_year'),
+                "cvc": card_data.get('cvc'),
+                "address_line1": card_data.get('address_line1'),
+                "address_line2": card_data.get('address_line2'),
+                "address_city": card_data.get('address_city'),
+                "address_state": card_data.get('address_state'),
+                "address_zip": card_data.get('address_zip'),
+                "address_country": card_data.get('address_country')
+              },
+            )
+        print(card_token)
+        token_id = card_token.get('id')
+        print('--------------------------------------------------')
+
+
+        created_card = stripe.Customer.create_source(
+              customer_id,
+              source=token_id,
+            )
+        print(created_card)
+        card_id = created_card.get('id')
+        print('-------------------------------------------------')
+
+    return render_template('add_card.html', created_card=created_card)
+
+
+
+
 if __name__ == '__main__':
     app.run(host="localhost", port=4242, debug=True)
