@@ -19,18 +19,21 @@
           {% elif errors %}
             {{errors}}
           {% else %}
+            <center><h2>Add Card</h2></center>
             <form method="POST">
-            <input type="text" name="email" placeholder="email" required="true">
-            <input type="text" name="number" placeholder="number" required="true">
-            <input type="text" name="exp_month" placeholder="exp_month" required="true">
-            <input type="text" name="exp_year" placeholder="exp_year" required="true">
-            <input type="text" name="cvc" placeholder="cvc" required="true">
-            <input type="text" name="address_line1" placeholder="address_line1" required="true">
-            <input type="text" name="address_line2" placeholder="address_line2" required="true">
-            <input type="text" name="address_city" placeholder="address_city" required="true">
-            <input type="text" name="address_state" placeholder="address_state" required="true">
-            <input type="text" name="address_zip" placeholder="address_zip" required="true">
-            <input type="text" name="address_country" placeholder="address_country" required="true">
+            <input type="text" name="email" placeholder="Email" required="true">
+            <input type="text" name="number" placeholder="Card number" required="true">
+            <input type="text" name="exp_month" placeholder="Exp month" required="true">
+            <input type="text" name="exp_year" placeholder="Exp year" required="true">
+            <input type="text" name="cvc" placeholder="CVC" required="true">
+            <input type="text" name="address_zip" placeholder="Postal code" required="true">
+            <input type="text" name="address_line1" placeholder="Address 1" required="true">
+
+            <input type="text" name="address_line2" placeholder="Address 2 ( Optional )">
+            <input type="text" name="address_city" placeholder="City ( Optional )">
+            <input type="text" name="address_state" placeholder="State ( Optional )">
+            <input type="text" name="address_country" placeholder="Country ( Optional )">
+
             <button>Submit</button>
           </form>
           {% endif %}
