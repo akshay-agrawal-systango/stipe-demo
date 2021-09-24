@@ -15,7 +15,9 @@
       <div class="sr-main">
         <div class="sr-payment-form card">
           {% if created_card %}
-            {{created_card}}
+            <pre style="font-size: 15px;">
+              {{jsonfile}}
+            </pre>
           {% elif errors %}
             {{errors}}
           {% else %}

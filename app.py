@@ -152,7 +152,8 @@ def add_card():
         except Exception as e:
             errors = [e]
 
-    return render_template('add_card.html', created_card=created_card, errors=errors)
+    response = json.dumps(created_card, sort_keys = True, indent = 4, separators = (',', ': '))
+    return render_template('add_card.html', created_card=created_card, jsonfile=response, errors=errors)
 
 
 
